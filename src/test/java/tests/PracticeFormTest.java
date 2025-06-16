@@ -147,7 +147,6 @@ public class PracticeFormTest {
 //        Assert.assertEquals(tableDescriptionList.get(5).getText(),"Subjects", "Subjects are not displayed right");
 //        Assert.assertEquals(tableValueList.get(5).getText(),subjectsValueString);
 
-
 //        Assert.assertEquals(tableDescriptionList.get(4).getText(),"Date Of Birth","Date Of Birth is not displayed right");
 //        Assert.assertEquals(tableDescriptionList.get(4).getText(),bir,"Gender is not displayed right");
 
