@@ -1,30 +1,28 @@
 package tests;
 
+import helperMethods.PageHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import sharedData.SharedData;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WindowsTest {
+public class WindowsTest extends SharedData {
 
-    public WebDriver driver;
 
     @Test
 
     public void testMethod() {
-        driver = new ChromeDriver();
-        driver.get("https://demoqa.com");
-        driver.manage().window().maximize();
+        PageHelper pageHelper = new PageHelper(driver);
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)", "");
+        pageHelper.scrollPage(0,400);
+
 
 
         WebElement alertForm = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
@@ -60,7 +58,7 @@ public class WindowsTest {
         driver.switchTo().window(tabsList.get(0));
         System.out.println(driver.getCurrentUrl());
 
-        driver.quit();
+        //driver.quit();
         //din cauza reclamei fortam site-ul sa acceseze un URL specific
         //driver.navigate().to("www.google.com");
     }
