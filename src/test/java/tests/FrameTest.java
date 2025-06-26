@@ -1,14 +1,11 @@
 package tests;
 
+import helperMethods.ElementHelper;
+import helperMethods.PageHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
-
-import java.time.Duration;
 
 public class FrameTest extends SharedData {
 
@@ -17,17 +14,14 @@ public class FrameTest extends SharedData {
 
         public void WindowTestMethod() {
 
-
-
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            JavascriptExecutor executor = (JavascriptExecutor) driver;
-
+            PageHelper pageHelper = new PageHelper(driver);
+            ElementHelper elementHelper = new ElementHelper(driver);
 
             WebElement alertForm = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-            alertForm.click();
+            elementHelper.clickJSElement(alertForm);
 
             WebElement frameFormElement = driver.findElement(By.xpath("//span[text()='Frames']"));
-            executor.executeScript("arguments[0].click();", frameFormElement);
+            elementHelper.clickJSElement(frameFormElement);
 
             //driver.switchTo().frame("frame1");
 
@@ -42,8 +36,6 @@ public class FrameTest extends SharedData {
             WebElement secondBlockElement = driver.findElement(By.id("sampleHeading"));
             System.out.println();
             System.out.println(secondBlockElement.getText());
-
-            driver.quit();
 
         }
 

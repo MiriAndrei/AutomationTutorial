@@ -1,10 +1,10 @@
 package tests;
 
+import helperMethods.ElementHelper;
+import helperMethods.PageHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
@@ -16,12 +16,15 @@ public class WebTablesTest extends SharedData {
     @Test
     public void testMethod(){
 
+        ElementHelper elementHelper = new ElementHelper(driver);
+        PageHelper pageHelper= new PageHelper(driver);
+        pageHelper.scrollPage(0,400);
 
         WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        elementsMenu.click();
+        elementHelper.clickElement(elementsMenu);
 
         WebElement webTables = driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        webTables.click();
+        elementHelper.clickElement(webTables);
 
         List<WebElement> tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         int tableSize = 3;
@@ -30,7 +33,7 @@ public class WebTablesTest extends SharedData {
 
         //identificam un element
         WebElement addElement= driver.findElement(By.id("addNewRecordButton"));
-        addElement.click();
+        elementHelper.clickElement(addElement);
 
         WebElement firstnameElement= driver.findElement(By.id("firstName"));
         String firstnameValue="Test";
@@ -60,7 +63,7 @@ public class WebTablesTest extends SharedData {
 
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         WebElement submitElement=driver.findElement(By.id("submit"));
-        executor.executeScript("arguments[0].click();", submitElement);
+        elementHelper.clickJSElement(submitElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         Assert.assertEquals(tableList.size(),tableSize +1 );
@@ -71,44 +74,37 @@ public class WebTablesTest extends SharedData {
         Assert.assertTrue(tableList.get(tableSize).getText().contains(salaryValue));
         Assert.assertTrue(tableList.get(tableSize).getText().contains(departmentValue));
 
-
         //edit functionality
 
         WebElement editElement = driver.findElement(By.id("edit-record-4"));
-        executor.executeScript("arguments[0].click();", editElement);
+        elementHelper.clickJSElement(editElement);
 
         WebElement editFirstNameElement= driver.findElement(By.id("firstName"));
         String editFirstNameValue="TETE";
-        editFirstNameElement.clear();
-        editFirstNameElement.sendKeys(editFirstNameValue);
+        elementHelper.editElement(editFirstNameElement, editFirstNameValue);
 
         WebElement editLastNameElement= driver.findElement(By.id("lastName"));
         String editLastNameValue="UUUUUU";
-        editLastNameElement.clear();
-        editLastNameElement.sendKeys(editLastNameValue);
+        elementHelper.editElement(editLastNameElement, editLastNameValue);
 
         WebElement editUserEmailElement= driver.findElement(By.id("userEmail"));
         String editUserEmailValue="UUUUUU@yopmail.com";
-        editUserEmailElement.clear();
-        editUserEmailElement.sendKeys(editUserEmailValue);
+        elementHelper.editElement(editUserEmailElement, editUserEmailValue);
 
         WebElement editAgeElement= driver.findElement(By.id("age"));
         String editAgeValue="44";
-        editAgeElement.clear();
-        editAgeElement.sendKeys(editAgeValue);
+        elementHelper.editElement(editAgeElement,editAgeValue);
 
         WebElement editSalaryElement= driver.findElement(By.id("salary"));
         String editSalaryValue="2222";
-        editSalaryElement.clear();
-        editSalaryElement.sendKeys(editSalaryValue);
+        elementHelper.editElement(editSalaryElement, editSalaryValue);
 
         WebElement editDepartmentElement= driver.findElement(By.id("department"));
         String editDepartmentValue="MARKETING";
-        editDepartmentElement.clear();
-        editDepartmentElement.sendKeys(editDepartmentValue);
+        elementHelper.editElement(editDepartmentElement, editDepartmentValue);
 
         WebElement editSubmitElement= driver.findElement(By.id("submit"));
-        editSubmitElement.click();
+        elementHelper.clickElement(editSubmitElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         Assert.assertEquals(tableList.size(),tableSize +1 );
@@ -122,14 +118,11 @@ public class WebTablesTest extends SharedData {
         //delete functionality
 
         WebElement deleteElement=driver.findElement(By.id("delete-record-4"));
-        executor.executeScript("arguments[0].click();", deleteElement);
+        elementHelper.clickJSElement(deleteElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         Assert.assertEquals(tableList.size(),tableSize );
 
         driver.quit();
-
-
-
     }
 }

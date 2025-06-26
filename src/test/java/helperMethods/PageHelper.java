@@ -13,7 +13,4 @@ public class PageHelper {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy("+x+","+y+")", "");
     }
-
-
-
 }

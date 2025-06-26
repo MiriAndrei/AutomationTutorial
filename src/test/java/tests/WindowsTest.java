@@ -1,17 +1,12 @@
 package tests;
 
+import helperMethods.ElementHelper;
 import helperMethods.PageHelper;
+import helperMethods.WindowsHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
-
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 public class WindowsTest extends SharedData {
 
@@ -20,42 +15,37 @@ public class WindowsTest extends SharedData {
 
     public void testMethod() {
         PageHelper pageHelper = new PageHelper(driver);
+        ElementHelper elementHelper = new ElementHelper(driver);
+        WindowsHelper windowsHelper = new WindowsHelper(driver);
 
         pageHelper.scrollPage(0,400);
 
-
-
         WebElement alertForm = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        alertForm.click();
+        elementHelper.clickElement(alertForm);
 
         WebElement alertFormTable = driver.findElement(By.xpath("//span[text()='Browser Windows']"));
-        alertFormTable.click();
+        elementHelper.clickElement(alertFormTable);
 
         WebElement newTabElement = driver.findElement(By.id("tabButton"));
-        newTabElement.click();
+        elementHelper.clickElement(newTabElement);
 
         System.out.println(driver.getCurrentUrl());
 
-        List<String> tabsList= new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabsList.get(1));
+        windowsHelper.switchToWindow(1);
         System.out.println(driver.getCurrentUrl());
 
-        //driver.quit();
         driver.close();
-        driver.switchTo().window(tabsList.get(0));
-        System.out.println(driver.getCurrentUrl());
+        windowsHelper.switchToWindow(0);
 
         WebElement newWindowElement= driver.findElement(By.id("windowButton"));
-        newWindowElement.click();
-
+        elementHelper.clickElement(newWindowElement);
         System.out.println(driver.getCurrentUrl());
 
-        List<String> windowList= new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowList.get(1));
+        windowsHelper.switchToWindow(1);
         System.out.println(driver.getCurrentUrl());
 
         driver.close();
-        driver.switchTo().window(tabsList.get(0));
+        windowsHelper.switchToWindow(0);
         System.out.println(driver.getCurrentUrl());
 
         //driver.quit();

@@ -20,4 +20,8 @@ public class ElementHelper {
     public void clickElement(WebElement element){
         element.click();
     }
+    public void editElement(WebElement element, String text){
+        element.clear();
+        element.sendKeys(text);
+    }
 }
