@@ -2,6 +2,7 @@ package tests;
 
 import helperMethods.ElementHelper;
 import helperMethods.PageHelper;
+import helperMethods.TabHelper;
 import helperMethods.WindowsHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,8 +18,9 @@ public class WindowsTest extends SharedData {
         PageHelper pageHelper = new PageHelper(driver);
         ElementHelper elementHelper = new ElementHelper(driver);
         WindowsHelper windowsHelper = new WindowsHelper(driver);
+        TabHelper tabHelper = new TabHelper(driver);
 
-        pageHelper.scrollPage(0,400);
+        pageHelper.scrollPage(0, 400);
 
         WebElement alertForm = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
         elementHelper.clickElement(alertForm);
@@ -29,24 +31,16 @@ public class WindowsTest extends SharedData {
         WebElement newTabElement = driver.findElement(By.id("tabButton"));
         elementHelper.clickElement(newTabElement);
 
-        System.out.println(driver.getCurrentUrl());
+        tabHelper.switchToSpecificTab(1);
+        tabHelper.closeCurrentTab();
+        tabHelper.switchToSpecificTab(0);
 
-        windowsHelper.switchToWindow(1);
-        System.out.println(driver.getCurrentUrl());
-
-        driver.close();
-        windowsHelper.switchToWindow(0);
-
-        WebElement newWindowElement= driver.findElement(By.id("windowButton"));
+        WebElement newWindowElement = driver.findElement(By.id("windowButton"));
         elementHelper.clickElement(newWindowElement);
-        System.out.println(driver.getCurrentUrl());
 
-        windowsHelper.switchToWindow(1);
-        System.out.println(driver.getCurrentUrl());
-
-        driver.close();
-        windowsHelper.switchToWindow(0);
-        System.out.println(driver.getCurrentUrl());
+        tabHelper.switchToSpecificTab(1);
+        tabHelper.closeCurrentTab();
+        tabHelper.switchToSpecificTab(0);
 
         //driver.quit();
         //din cauza reclamei fortam site-ul sa acceseze un URL specific

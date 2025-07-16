@@ -1,42 +1,41 @@
 package tests;
 
 import helperMethods.ElementHelper;
+import helperMethods.FrameHelper;
 import helperMethods.PageHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import pages.IndexPage;
 import sharedData.SharedData;
 
 public class FrameTest extends SharedData {
 
 
-        @Test
+    @Test
 
-        public void WindowTestMethod() {
+    public void WindowTestMethod() {
 
-            PageHelper pageHelper = new PageHelper(driver);
-            ElementHelper elementHelper = new ElementHelper(driver);
+        PageHelper pageHelper = new PageHelper(driver);
+        ElementHelper elementHelper = new ElementHelper(driver);
+        FrameHelper frameHelper = new FrameHelper(driver);
+        IndexPage indexPage = new IndexPage(driver);
+        indexPage.interactOnAlertsFraneWindowMenu();
 
-            WebElement alertForm = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-            elementHelper.clickJSElement(alertForm);
+        WebElement frameFormElement = driver.findElement(By.xpath("//span[text()='Frames']"));
+        elementHelper.clickJSElement(frameFormElement);
 
-            WebElement frameFormElement = driver.findElement(By.xpath("//span[text()='Frames']"));
-            elementHelper.clickJSElement(frameFormElement);
+        frameHelper.switchFrameByElement(driver.findElement(By.xpath("//iframe[@id='frame1']")));
 
-            //driver.switchTo().frame("frame1");
+        WebElement firstBlockElement = driver.findElement(By.id("sampleHeading"));
+        elementHelper.printTextElement(firstBlockElement);
 
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='frame1']")));
+        frameHelper.switchToParent();
+        frameHelper.switchFrameByString("frame2");
 
-            WebElement firstBlockElement = driver.findElement(By.id("sampleHeading"));
-            System.out.println(firstBlockElement.getText());
+        WebElement secondBlockElement = driver.findElement(By.id("sampleHeading"));
+        elementHelper.printTextElement(secondBlockElement);
 
-            driver.switchTo().parentFrame();
-
-            driver.switchTo().frame("frame2");
-            WebElement secondBlockElement = driver.findElement(By.id("sampleHeading"));
-            System.out.println();
-            System.out.println(secondBlockElement.getText());
-
-        }
+    }
 
 }

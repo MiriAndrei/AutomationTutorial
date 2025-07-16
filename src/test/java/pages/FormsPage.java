@@ -1,0 +1,27 @@
+package pages;
+
+import helperMethods.ElementHelper;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class FormsPage {
+    public WebDriver driver;
+    public ElementHelper elementHelper;
+
+
+    public FormsPage(WebDriver driver){
+        this.driver=driver;
+        elementHelper = new ElementHelper(driver);
+        PageFactory.initElements(driver,this);
+    }
+
+    @FindBy(xpath ="//span[text()='Practice Form']")
+    public WebElement practiceFormTable;
+
+    public void interactWithPracticeFormSubmenu(){
+        elementHelper.clickElement(practiceFormTable);
+    }
+
+}

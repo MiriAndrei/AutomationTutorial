@@ -2,8 +2,10 @@ package tests;
 
 import helperMethods.AlertHelper;
 import helperMethods.ElementHelper;
+import helperMethods.PageHelper;
 import org.openqa.selenium.*;
 import org.testng.annotations.Test;
+import pages.IndexPage;
 import sharedData.SharedData;
 
 public class AlertsTest extends SharedData {
@@ -14,9 +16,13 @@ public class AlertsTest extends SharedData {
 
         ElementHelper elementHelper = new ElementHelper(driver);
         AlertHelper alertHelper = new AlertHelper(driver);
+        PageHelper pageHelper = new PageHelper(driver);
 
-        WebElement alertForm = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementHelper.clickJSElement(alertForm);
+        IndexPage indexPage = new IndexPage(driver);
+        indexPage.interactOnAlertsFraneWindowMenu();
+
+        //WebElement alertForm = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
+        //elementHelper.clickJSElement(alertForm);
         //alertForm.click();
 
         WebElement alertFormTable = driver.findElement(By.xpath("//span[text()='Alerts']"));
