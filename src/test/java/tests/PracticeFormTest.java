@@ -35,10 +35,8 @@ public class PracticeFormTest extends SharedData {
         //ai o lista de string=uri si vrei sa iti transforme intr-un singur string   delimitat  cu , si spatiu
         String genderValue = "Male";
         List<String> hobbiesValues = Arrays.asList("Sports", "Reading");
-//        js.executeScript("window.scrollBy(0,400)", "");
         String uploadValue = "src/test/resources/Screenshot 2025-05-28 at 7.42.31 PM.png";
         String currentAdressValue = "Str Principala nr.1";
-//        js.executeScript("window.scrollBy(0,400)", "");
         String stateValue = "NCR";
         String cityValue = "Delhi";
 
@@ -48,7 +46,6 @@ public class PracticeFormTest extends SharedData {
 
         practiceFormPage.validateFormValues(firstNameValue,lastNameValue,emailValue,genderValue,mobileNumberValue,subjectsValue,
                 currentAdressValue,stateValue,cityValue);
-
 
     }
 }

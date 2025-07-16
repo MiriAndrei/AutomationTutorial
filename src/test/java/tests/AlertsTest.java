@@ -21,26 +21,16 @@ public class AlertsTest extends SharedData {
         IndexPage indexPage = new IndexPage(driver);
         indexPage.interactOnAlertsFraneWindowMenu();
 
-        //WebElement alertForm = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        //elementHelper.clickJSElement(alertForm);
-        //alertForm.click();
-
         WebElement alertFormTable = driver.findElement(By.xpath("//span[text()='Alerts']"));
         elementHelper.clickJSElement(alertFormTable);
-        //alertFormTable.click();
 
         WebElement alertOkButtonElement= driver.findElement(By.id("alertButton"));
         elementHelper.clickElement(alertOkButtonElement);
         alertHelper.acceptAlert();
-        //alertOkButtonElement.click();
 
         WebElement alertsWaitButtonElement = driver.findElement(By.id("timerAlertButton"));
         elementHelper.clickElement(alertsWaitButtonElement);
         alertHelper.acceptAlert();
-        //alertsWaitButtonElement.click();
-        //wait explicit pentru alerta
-        //WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        //wait.until(ExpectedConditions.alertIsPresent());
 
         WebElement alertOkCancelElement = driver.findElement(By.id("confirmButton"));
         elementHelper.clickElement(alertOkCancelElement);
