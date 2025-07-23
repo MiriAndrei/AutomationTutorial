@@ -12,10 +12,10 @@ public class IndexPage extends BasePage {
     }
 
     @FindBy(xpath = "//h5[text()='Alerts, Frame & Windows']")
-    public WebElement alertForm;
+    private WebElement alertForm;
 
     @FindBy(xpath = "//h5[text()='Forms']")
-    public WebElement practiceForm;
+    private WebElement practiceForm;
 
     public void interactOnAlertsFraneWindowMenu(){
         elementHelper.clickJSElement(alertForm);

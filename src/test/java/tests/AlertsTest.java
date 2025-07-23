@@ -12,9 +12,9 @@ public class AlertsTest extends SharedData {
 
     public void WindowTestMethod() {
 
-        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(driver);
-        IndexPage indexPage = new IndexPage(driver);
-        AlertPage alertPage = new AlertPage(driver);
+        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(getDriver());
+        IndexPage indexPage = new IndexPage(getDriver());
+        AlertPage alertPage = new AlertPage(getDriver());
 
         indexPage.interactOnAlertsFraneWindowMenu();
         alertFrameWindowPage.interactWithAlertsSubMenu();
@@ -23,6 +23,8 @@ public class AlertsTest extends SharedData {
         alertPage.dealAlertTimer();
         alertPage.dealConfirmButton();
         alertPage.dealALertPrompt("Andrei");
+
+
 
     }
 }

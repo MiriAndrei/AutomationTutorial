@@ -14,9 +14,9 @@ public class AlertFrameWindowPage extends BasePage{
     }
 
     @FindBy(xpath = "//span[text()='Alerts']")
-    public WebElement alertFormTable;
+    private WebElement alertFormTable;
     @FindBy(xpath = "//span[text()='Frames']")
-    public WebElement frameFormElement;
+    private WebElement frameFormElement;
 
     public void interactWithAlertsSubMenu(){
         elementHelper.clickElement(alertFormTable);

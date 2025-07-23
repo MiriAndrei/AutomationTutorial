@@ -13,9 +13,9 @@ public class FrameTest extends SharedData {
 
     public void WindowTestMethod() {
 
-        IndexPage indexPage = new IndexPage(driver);
-        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(driver);
-        FramesPage framesPage= new FramesPage(driver);
+        IndexPage indexPage = new IndexPage(getDriver());
+        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(getDriver());
+        FramesPage framesPage= new FramesPage(getDriver());
 
         indexPage.interactOnAlertsFraneWindowMenu();
         alertFrameWindowPage.interactWithFramesSubMenu();
