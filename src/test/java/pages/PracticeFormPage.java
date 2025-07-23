@@ -11,17 +11,11 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.File;
 import java.util.List;
 
-public class PracticeFormPage {
-    public WebDriver driver;
-    public ElementHelper elementHelper;
-    public PageHelper pageHelper;
+public class PracticeFormPage extends BasePage {
 
 
     public PracticeFormPage(WebDriver driver) {
-        this.driver = driver;
-        elementHelper = new ElementHelper(driver);
-        pageHelper = new PageHelper(driver);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(xpath = "//span[text()='Practice Form']")
@@ -111,7 +105,7 @@ public class PracticeFormPage {
         }
 
         File file = new File(uploadValue);
-        elementHelper.fillElement(uploadElement,file.getAbsolutePath());
+        elementHelper.fillElement(uploadElement, file.getAbsolutePath());
         elementHelper.fillElement(currentAdress, currentAdressValue);
 
         pageHelper.scrollPage(0, 400);
@@ -147,38 +141,38 @@ public class PracticeFormPage {
 
 
     }
-    public void validateFormValues(String firstNameValue, String lastNameValue, String emailValue,String genderValue, String mobileNumberValue,
-                                   List<String> subjectsValueString, String currentAdressValue,
-                                   String stateValue, String cityValue){
 
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(0),"Student Name");
+    public void validateFormValues(String firstNameValue, String lastNameValue, String emailValue, String genderValue, String mobileNumberValue,
+                                   List<String> subjectsValueString, String currentAdressValue,
+                                   String stateValue, String cityValue) {
+
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(0), "Student Name");
         elementHelper.validateElementContainsText(tableValueList.get(0), firstNameValue);
         elementHelper.validateElementContainsText(tableValueList.get(0), lastNameValue);
 
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(1),"Student Email");
-        elementHelper.validateElementEqualsText(tableValueList.get(1),emailValue);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(1), "Student Email");
+        elementHelper.validateElementEqualsText(tableValueList.get(1), emailValue);
 
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(2),"Gender");
-        elementHelper.validateElementEqualsText(tableValueList.get(2),genderValue);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(2), "Gender");
+        elementHelper.validateElementEqualsText(tableValueList.get(2), genderValue);
 
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(3),"Mobile");
-        elementHelper.validateElementEqualsText(tableValueList.get(3),mobileNumberValue);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(3), "Mobile");
+        elementHelper.validateElementEqualsText(tableValueList.get(3), mobileNumberValue);
 
-        String subjectsValue= String.join(", ", subjectsValueString);
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(5),"Subjects");
-        elementHelper.validateElementEqualsText(tableValueList.get(5),subjectsValue);
+        String subjectsValue = String.join(", ", subjectsValueString);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(5), "Subjects");
+        elementHelper.validateElementEqualsText(tableValueList.get(5), subjectsValue);
 
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(8),"Address");
-        elementHelper.validateElementEqualsText(tableValueList.get(8),currentAdressValue);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(8), "Address");
+        elementHelper.validateElementEqualsText(tableValueList.get(8), currentAdressValue);
 
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(9),"State and City");
-        elementHelper.validateElementEqualsText(tableValueList.get(9),stateValue+" "+cityValue);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(9), "State and City");
+        elementHelper.validateElementEqualsText(tableValueList.get(9), stateValue + " " + cityValue);
 
     }
 
 
 }
-
 
 
 //        Assert.assertEquals(tableDescriptionList.get(0).getText(),"Student Name","Student Name text is not display right in the table");

@@ -1,13 +1,12 @@
 package helperMethods;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class FrameHelper {
 
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     public FrameHelper(WebDriver driver) {
         this.driver = driver;

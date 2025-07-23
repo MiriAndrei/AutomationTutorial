@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TabHelper {
-    public WebDriver driver;
+    private WebDriver driver;
 
     public TabHelper(WebDriver driver) {
         this.driver = driver;

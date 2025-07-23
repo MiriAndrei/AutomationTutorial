@@ -7,7 +7,7 @@ import java.util.List;
 
 public class WindowsHelper {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     public WindowsHelper(WebDriver driver) {
         this.driver = driver;
