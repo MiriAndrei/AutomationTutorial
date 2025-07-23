@@ -1,5 +1,6 @@
 package sharedData;
 
+import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -20,12 +21,16 @@ public class SharedData {
 
         //wait implicit
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        LoggerUtility.startTest(this.getClass().getSimpleName());
     }
 
     @AfterMethod
 
     public void clearEnviroment(){
         driver.quit();
+
+        LoggerUtility.finishTest(this.getClass().getSimpleName());
     }
 
     public WebDriver getDriver() {
