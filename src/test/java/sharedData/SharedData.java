@@ -2,33 +2,46 @@ package sharedData;
 
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
-import java.time.Duration;
 
 public class SharedData {
 
     private WebDriver driver;
+    private String browser;
 
     @BeforeMethod
     public void prepareEnvironment(){
-        driver = new ChromeDriver();
-        driver.get("https://demoqa.com");
-
-        driver.manage().window().maximize();
-
-        //wait implicit
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
         LoggerUtility.startTest(this.getClass().getSimpleName());
+
+         browser = "Chrome";
+      switch (browser){
+          case "Chrome":
+              ChromeBrowser chromeBrowser = new ChromeBrowser();
+              chromeBrowser.openBrowser();
+              driver=chromeBrowser.getDriver();
+              break;
+          case "Firefox":
+              FirefoxBrowser firefoxBrowser = new FirefoxBrowser();
+              firefoxBrowser.openBrowser();
+              driver=firefoxBrowser.getDriver();
+              break;
+      }
+
+        LoggerUtility.infoLog("The browser "+ browser+" was opend with success");
     }
 
     @AfterMethod
 
-    public void clearEnviroment(){
+    public void clearEnviroment(ITestResult result){
+        if(result.getStatus()==ITestResult.FAILURE){
+            LoggerUtility.errorLog(result.getThrowable().getMessage());
+        }
         driver.quit();
+
+        LoggerUtility.infoLog("The browser "+ browser+" was closed with success");
+
 
         LoggerUtility.finishTest(this.getClass().getSimpleName());
     }

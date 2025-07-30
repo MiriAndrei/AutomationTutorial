@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.ElementsPage;
 import pages.IndexPage;
 import sharedData.SharedData;
 
@@ -19,14 +20,18 @@ public class WebTablesTest extends SharedData {
         ElementHelper elementHelper = new ElementHelper(getDriver());
         PageHelper pageHelper = new PageHelper(getDriver());
         IndexPage indexPage = new IndexPage(getDriver());
+        ElementsPage elementsPage = new ElementsPage(getDriver());
 
-        pageHelper.scrollPage(0, 400);
+//        pageHelper.scrollPage(0, 400);
+//
+//        WebElement elementsMenu = getDriver().findElement(By.xpath("//h5[text()='Elements']"));
+//        elementHelper.clickElement(elementsMenu);
 
-        WebElement elementsMenu = getDriver().findElement(By.xpath("//h5[text()='Elements']"));
-        elementHelper.clickElement(elementsMenu);
+        indexPage.interactWithElementsMenu();
+        elementsPage.interactWithWebTablesMenu();
 
-        WebElement webTables = getDriver().findElement(By.xpath("//span[text()='Web Tables']"));
-        elementHelper.clickElement(webTables);
+//        WebElement webTables = getDriver().findElement(By.xpath("//span[text()='Web Tables']"));
+//        elementHelper.clickElement(webTables);
 
         List<WebElement> tableList = getDriver().findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         int tableSize = 3;

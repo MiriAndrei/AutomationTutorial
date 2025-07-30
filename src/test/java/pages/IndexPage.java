@@ -18,6 +18,9 @@ public class IndexPage extends BasePage {
     @FindBy(xpath = "//h5[text()='Forms']")
     private WebElement practiceForm;
 
+    @FindBy(xpath = "//h5[text()='Elements']")
+    private WebElement elementsMenu;
+
     public void interactOnAlertsFraneWindowMenu(){
         elementHelper.clickJSElement(alertForm);
         LoggerUtility.infoLog("The user clicks on alert window frame menu");
@@ -25,5 +28,15 @@ public class IndexPage extends BasePage {
 
     public void  interactWithFormsMenu(){
         elementHelper.clickElement(practiceForm);
+        LoggerUtility.infoLog("The user clicks on forms menu");
+
+    }
+
+
+
+    public void interactWithElementsMenu(){
+        pageHelper.scrollPage(0,400);
+        elementHelper.waitVisibleElement(elementsMenu);
+        elementHelper.clickElement(elementsMenu);
     }
 }

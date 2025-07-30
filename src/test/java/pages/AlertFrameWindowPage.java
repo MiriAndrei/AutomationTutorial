@@ -5,8 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AlertFrameWindowPage extends BasePage{
-
+public class AlertFrameWindowPage extends BasePage {
 
 
     public AlertFrameWindowPage(WebDriver driver) {
@@ -19,12 +18,14 @@ public class AlertFrameWindowPage extends BasePage{
     @FindBy(xpath = "//span[text()='Frames']")
     private WebElement frameFormElement;
 
-    public void interactWithAlertsSubMenu(){
+    public void interactWithAlertsSubMenu() {
         elementHelper.clickElement(alertFormTable);
         LoggerUtility.infoLog("The user clicks on alerts sub menu");
     }
 
-    public void interactWithFramesSubMenu(){
+    public void interactWithFramesSubMenu() {
         elementHelper.clickJSElement(frameFormElement);
+        LoggerUtility.infoLog("The user clicks on frames sub menu");
+
     }
 }

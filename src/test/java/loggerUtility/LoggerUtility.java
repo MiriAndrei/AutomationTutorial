@@ -16,6 +16,10 @@ public class LoggerUtility {
         logger.info(message);
     }
     //error step
+    public static void errorLog(String message){
+        logger.error(Thread.currentThread().getName()+ ""+message);
+    }
+
     //finish test
     public static void finishTest(String testName){
         logger.info("===== Exection finished: " + testName + " =====");
