@@ -27,6 +27,7 @@ public class IndexPage extends BasePage {
     }
 
     public void  interactWithFormsMenu(){
+        pageHelper.scrollPage(0,400);
         elementHelper.clickElement(practiceForm);
         LoggerUtility.infoLog("The user clicks on forms menu");
 

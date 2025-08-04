@@ -2,6 +2,7 @@ package pages;
 
 import helperMethods.ElementHelper;
 import helperMethods.PageHelper;
+import loggerUtility.LoggerUtility;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -66,21 +67,21 @@ public class PracticeFormPage extends BasePage {
     @FindBy(xpath = "//table//td[2]")
     List<WebElement> tableValueList;
 
-//    @FindBy(xpath = "//table//td[1]")
-//    List<WebElement> tableDescriptionList;
-
-
     public void fillEntireForm(String firstNameValue, String lastNameValue, String emailValue, String mobileNumberValue,
                                List<String> subjectsValue, String genderValue, List<String> hobbiesValues,
                                String uploadValue, String currentAdressValue, String stateValue, String cityValue) {
         elementHelper.fillElement(firstNameElement, firstNameValue);
+        LoggerUtility.infoLog("The user fills first name filed "+firstNameValue);
         elementHelper.fillElement(lastNameElement, lastNameValue);
+        LoggerUtility.infoLog("The user fills last name filed "+lastNameValue);
         elementHelper.fillElement(emailElement, emailValue);
+        LoggerUtility.infoLog("The user fills email filed "+emailValue);
         elementHelper.fillElement(mobileNumberElement, mobileNumberValue);
+        LoggerUtility.infoLog("The user fills mobile filed "+mobileNumberValue);
         //ai o lista de string=uri si vrei sa iti transforme intr-un singur string   delimitat  cu , si spatiu
-        String subjectsValueString = String.join(", ", subjectsValue);
         for (int index = 0; index < subjectsValue.size(); index++) {
             elementHelper.fillPressElement(subjectsElement, subjectsValue.get(index), Keys.ENTER);
+            LoggerUtility.infoLog("The user fills subjects filed "+subjectsValue.get(index));
         }
         pageHelper.scrollPage(0, 400);
         switch (genderValue) {
@@ -93,6 +94,8 @@ public class PracticeFormPage extends BasePage {
             case "Other":
                 elementHelper.clickElement(genderElementList.get(2));
         }
+        LoggerUtility.infoLog("The user fills gender filed "+genderValue);
+
         pageHelper.scrollPage(0, 400);
 
 //        js.executeScript("window.scrollBy(0,400)", "");
@@ -101,12 +104,16 @@ public class PracticeFormPage extends BasePage {
         for (int index = 0; index < hobbiesElementList.size(); index++) {
             if (hobbiesValues.contains(hobbiesElementList.get(index).getText())) {
                 elementHelper.clickElement(hobbiesElementList.get(index));
+                LoggerUtility.infoLog("The user fills hobbies filed "+hobbiesElementList.get(index).getText());
             }
         }
 
         File file = new File(uploadValue);
         elementHelper.fillElement(uploadElement, file.getAbsolutePath());
+        LoggerUtility.infoLog("The user uploads the file from "+file.getAbsolutePath());
         elementHelper.fillElement(currentAdress, currentAdressValue);
+        LoggerUtility.infoLog("The user fills the address with "+currentAdressValue);
+
 
         pageHelper.scrollPage(0, 400);
 
@@ -114,8 +121,13 @@ public class PracticeFormPage extends BasePage {
 
         elementHelper.clickElement(stateElement);
         elementHelper.fillPressElement(stateInputElement, stateValue, Keys.ENTER);
+        LoggerUtility.infoLog("The user fills the state with "+stateValue);
         elementHelper.fillPressElement(cityInputElement, cityValue, Keys.ENTER);
+        LoggerUtility.infoLog("The user fills the city with "+cityValue);
+
         elementHelper.clickJSElement(submitElement);
+        LoggerUtility.infoLog("The user clicks the submit button ");
+
 
 //        elementHelper.validateElementEqualsText(tableDescriptionList.get(0),"Student Name");
 //        elementHelper.validateElementContainsText(tableValueList.get(0), firstNameValue);
@@ -147,27 +159,44 @@ public class PracticeFormPage extends BasePage {
                                    String stateValue, String cityValue) {
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(0), "Student Name");
+        LoggerUtility.infoLog("The user validates the presence of value Student Name ");
         elementHelper.validateElementContainsText(tableValueList.get(0), firstNameValue);
+        LoggerUtility.infoLog("The user validates the presence of value: "+firstNameValue);
         elementHelper.validateElementContainsText(tableValueList.get(0), lastNameValue);
+        LoggerUtility.infoLog("The user validates the presence of value: "+lastNameValue);
+
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(1), "Student Email");
+        LoggerUtility.infoLog("The user validates the presence of value Student Email ");
         elementHelper.validateElementEqualsText(tableValueList.get(1), emailValue);
+        LoggerUtility.infoLog("The user validates the presence of value: "+emailValue);
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(2), "Gender");
+        LoggerUtility.infoLog("The user validates the presence of value Gender ");
         elementHelper.validateElementEqualsText(tableValueList.get(2), genderValue);
+        LoggerUtility.infoLog("The user validates the presence of value: "+genderValue);
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(3), "Mobile");
+        LoggerUtility.infoLog("The user validates the presence of value Mobile ");
         elementHelper.validateElementEqualsText(tableValueList.get(3), mobileNumberValue);
+        LoggerUtility.infoLog("The user validates the presence of value: "+mobileNumberValue);
 
         String subjectsValue = String.join(", ", subjectsValueString);
         elementHelper.validateElementEqualsText(tableDescriptionList.get(5), "Subjects");
+        LoggerUtility.infoLog("The user validates the presence of value Subjects ");
         elementHelper.validateElementEqualsText(tableValueList.get(5), subjectsValue);
+        LoggerUtility.infoLog("The user validates the presence of value: "+subjectsValue);
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(8), "Address");
+        LoggerUtility.infoLog("The user validates the presence of value Address ");
         elementHelper.validateElementEqualsText(tableValueList.get(8), currentAdressValue);
+        LoggerUtility.infoLog("The user validates the presence of value: "+currentAdressValue);
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(9), "State and City");
+        LoggerUtility.infoLog("The user validates the presence of value State and City ");
         elementHelper.validateElementEqualsText(tableValueList.get(9), stateValue + " " + cityValue);
+        LoggerUtility.infoLog("The user validates the presence of value: "+stateValue + " " + cityValue);
+
 
     }
 

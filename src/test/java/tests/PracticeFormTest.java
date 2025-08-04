@@ -1,7 +1,5 @@
 package tests;
 
-import helperMethods.ElementHelper;
-import helperMethods.PageHelper;
 import org.testng.annotations.Test;
 import pages.FormsPage;
 import pages.IndexPage;
@@ -17,10 +15,6 @@ public class PracticeFormTest extends SharedData {
 
     public void testMethod() {
 
-        PageHelper pageHelper = new PageHelper(getDriver());
-        ElementHelper elementHelper = new ElementHelper(getDriver());
-        pageHelper.scrollPage(0, 400);
-
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.interactWithFormsMenu();
 
@@ -32,7 +26,6 @@ public class PracticeFormTest extends SharedData {
         String emailValue = "test@test.com";
         String mobileNumberValue = "0782332222";
         List<String> subjectsValue = Arrays.asList("Accounting", "Maths");
-        //ai o lista de string=uri si vrei sa iti transforme intr-un singur string   delimitat  cu , si spatiu
         String genderValue = "Male";
         List<String> hobbiesValues = Arrays.asList("Sports", "Reading");
         String uploadValue = "src/test/resources/Screenshot 2025-05-28 at 7.42.31 PM.png";
