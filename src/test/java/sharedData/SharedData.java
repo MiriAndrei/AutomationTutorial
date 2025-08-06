@@ -11,7 +11,7 @@ public class SharedData {
     private WebDriver driver;
     private String browser;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void prepareEnvironment(){
         LoggerUtility.startTest(this.getClass().getSimpleName());
 
@@ -32,7 +32,7 @@ public class SharedData {
         LoggerUtility.infoLog("The browser "+ browser+" was opend with success");
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
 
     public void clearEnviroment(ITestResult result){
         if(result.getStatus()==ITestResult.FAILURE){

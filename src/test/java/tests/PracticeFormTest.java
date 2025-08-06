@@ -5,13 +5,14 @@ import pages.FormsPage;
 import pages.IndexPage;
 import pages.PracticeFormPage;
 import sharedData.SharedData;
+import suite.Suite;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class PracticeFormTest extends SharedData {
 
-    @Test
+    @Test(groups = Suite.PRACTICE_SUITE)
 
     public void testMethod() {
 

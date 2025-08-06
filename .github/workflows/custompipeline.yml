@@ -1,0 +1,37 @@
+name: Custom Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: 'Choose Browser:'
+        required: true
+        default: 'Chrome'
+        type: choice
+        options:
+          - 'Chrome'
+          - 'Firefox'
+      threads:
+        description: 'Choose nr of threads: (1-4)'
+        required: true
+        default: 2
+        type: number
+      tags:
+        description: : 'Provide suite tag/tags'
+        required: true
+        default: '@Regression, @Sanity'
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Run Regression Suite
+      run: mvn clean install -Dbrowser=${{ github.event.inputs.browser }} -Dthreads=${{ github.event.inputs.threads }} -Dcicd=true -Dgroups=${{ github.event.inputs.tags }}

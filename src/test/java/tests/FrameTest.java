@@ -5,11 +5,12 @@ import pages.AlertFrameWindowPage;
 import pages.FramesPage;
 import pages.IndexPage;
 import sharedData.SharedData;
+import suite.Suite;
 
 public class FrameTest extends SharedData {
 
 
-    @Test
+    @Test(groups = {Suite.FRAME_SUITE , Suite.SANITY_SUITE})
 
     public void WindowTestMethod() {
 
