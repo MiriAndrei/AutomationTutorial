@@ -19,7 +19,7 @@ on:
       tags:
         description: 'Provide suite tag/tags'
         required: true
-        default: '@Regression, @Sanity'
+        default: '@Regression,@Sanity'
 jobs:
   build:
 
